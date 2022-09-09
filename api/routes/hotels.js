@@ -27,7 +27,7 @@ router.put("/:id", async (req, res) => {
     );
     res.status(200).json(updatedHotel);
   } catch (error) {
-    res.status(500).json(error);
+    next(error);
   }
 });
 
@@ -52,12 +52,12 @@ router.get("/:id", async (req, res) => {
 });
 
 // Get All
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
     const hotels = await Hotel.find();
     res.status(200).json(hotels);
   } catch (error) {
-    res.status(500).json(error);
+    next(error);
   }
 });
 
